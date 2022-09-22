@@ -36,3 +36,15 @@ Route::get('/search-result', function () {
 Route::get('/single-post', function () {
     return view('front-end.single-post');
 });
+
+Route::get('/admin', function () {
+    return view('backend.master');
+});
+
+Route::get('/admin/user-form', function () {
+    return view('backend.user-form');
+});
+
+Route::get('/admin/user-table', function () {
+    return view('backend.user-table');
+});
