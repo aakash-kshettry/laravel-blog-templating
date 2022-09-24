@@ -53,32 +53,32 @@
 
                     <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
                         <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus />
+                            <label for="username" class="form-label">title</label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter your username" autofocus />
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
+                            <label for="email" class="form-label">slug</label>
+                            <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter your email" />
                         </div>
-                        <div class="mb-3 form-password-toggle">
-                            <label class="form-label" for="password">Password</label>
-                            <div class="input-group input-group-merge">
-                                <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
-                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                            </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">summary</label>
+                            <input type="text" class="form-control" id="summary" name="summary" placeholder="Enter your email" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">description</label>
+                            <input type="text" class="form-control" id="description" name="description" placeholder="Enter your email" />
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="role">Role</label>
                             <select class="form-select form-select-m mb-3" aria-label=".form-select-lg example">
-                                <option selected>Select the role</option>
+                                <option selected>Select the status</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
                             </select>
                         </div>
-                        
 
-                        <button class="btn btn-primary d-grid w-100">Add User</button>
+                        <button class="btn btn-primary d-grid w-100">Add Post</button>
                     </form>
                 </div>
             </div>

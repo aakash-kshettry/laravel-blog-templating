@@ -168,12 +168,12 @@
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="layouts-without-menu.html" class="menu-link">
+                  <a href="/admin/post-form" class="menu-link">
                     <div data-i18n="Without menu">Post Form</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="layouts-without-navbar.html" class="menu-link">
+                  <a href="/admin/post-table" class="menu-link">
                     <div data-i18n="Without navbar">Post Table</div>
                   </a>
                 </li>
@@ -187,12 +187,12 @@
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="layouts-without-menu.html" class="menu-link">
+                  <a href="/admin/comment-form" class="menu-link">
                     <div data-i18n="Without menu">Comment Form</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="layouts-without-navbar.html" class="menu-link">
+                  <a href="/admin/comment-table" class="menu-link">
                     <div data-i18n="Without navbar">Comment Table</div>
                   </a>
                 </li>
@@ -206,12 +206,12 @@
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="layouts-without-menu.html" class="menu-link">
+                  <a href="/admin/categories/form" class="menu-link">
                     <div data-i18n="Without menu">Category Form</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="layouts-without-navbar.html" class="menu-link">
+                  <a href="/admin/categories" class="menu-link">
                     <div data-i18n="Without navbar">Category Table</div>
                   </a>
                 </li>
@@ -357,22 +357,22 @@
     <!-- / Layout wrapper -->
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="{{('assets/admin/vendor/libs/jquery/jquery.js')}}"></script>
-    <script src="{{('assets/admin/vendor/libs/popper/popper.js')}}"></script>
-    <script src="{{('assets/admin/vendor/js/bootstrap.js')}}"></script>
-    <script src="{{('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+    <script src="{{asset('assets/admin/vendor/libs/jquery/jquery.js')}}"></script>
+    <script src="{{asset('assets/admin/vendor/libs/popper/popper.js')}}"></script>
+    <script src="{{asset('assets/admin/vendor/js/bootstrap.js')}}"></script>
+    <script src="{{asset('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
 
-    <script src="{{('assets/admin/vendor/js/menu.js')}}"></script>
+    <script src="{{asset('assets/admin/vendor/js/menu.js')}}"></script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="{{('assets/admin/vendor/libs/apex-charts/apexcharts.js')}}"></script>
+    <script src="{{asset('assets/admin/vendor/libs/apex-charts/apexcharts.js')}}"></script>
 
     <!-- Main JS -->
-    <script src="{{('assets/admin/js/main.js')}}"></script>
+    <script src="{{asset('assets/admin/js/main.js')}}"></script>
 
     <!-- Page JS -->
-    <script src="{{('assets/admin/js/dashboards-analytics.js')}}"></script>
+    <script src="{{asset('assets/admin/js/dashboards-analytics.js')}}"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

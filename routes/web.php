@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,3 +49,34 @@ Route::get('/admin/user-form', function () {
 Route::get('/admin/user-table', function () {
     return view('backend.user-table');
 });
+Route::get('/admin/post-form', function () {
+    return view('backend.post-form');
+});
+
+Route::get('/admin/post-table', function () {
+    return view('backend.post-table');
+});
+
+Route::get('/admin/comment-form', function () {
+    return view('backend.comment-form');
+});
+
+Route::get('/admin/comment-table', function () {
+    return view('backend.comment-table');
+});
+
+
+Route::get('/admin/category-form', function () {
+    return view('backend.category-form');
+});
+Route::get('/admin/categories', [CategoriesController::class,'index']);
+Route::get('/admin/categories/form', [CategoriesController::class,'create']);
+Route::post('/admin/categories', [CategoriesController::class,'store']);
+Route::get('/admin/categories/{id}', [CategoriesController::class,'edit']);
+Route::put('/admin/categories/{id}', [CategoriesController::class,'update']);
+Route::delete('/admin/categories/{id}', [CategoriesController::class,'destroy']);
+
+
+// Route::get('/admin/category-table', function () {
+//     return view('backend.category-table');
+// });
