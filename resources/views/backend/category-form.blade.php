@@ -72,7 +72,7 @@
                             <label for="status" class="form-label">Status</label>
                             <input type="text" class="form-control" id="status" name="status" placeholder="Enter category" autofocus />
                         </div>
-                        <button class="btn btn-primary d-grid w-100">Update Category</button>
+                        <button class="btn btn-primary d-grid w-100">Add Category</button>
                     </form>
                 </div>
             </div>

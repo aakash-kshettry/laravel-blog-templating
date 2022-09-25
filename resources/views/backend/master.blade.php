@@ -149,12 +149,12 @@
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="/admin/user-form" class="menu-link">
+                  <a href="/admin/users/form" class="menu-link">
                     <div data-i18n="Without menu">User Form</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="/admin/user-table" class="menu-link">
+                  <a href="/admin/users" class="menu-link">
                     <div data-i18n="Without navbar">User Table</div>
                   </a>
                 </li>
@@ -187,12 +187,12 @@
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="/admin/comment-form" class="menu-link">
+                  <a href="#" class="menu-link">
                     <div data-i18n="Without menu">Comment Form</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="/admin/comment-table" class="menu-link">
+                  <a href="/admin/comments" class="menu-link">
                     <div data-i18n="Without navbar">Comment Table</div>
                   </a>
                 </li>

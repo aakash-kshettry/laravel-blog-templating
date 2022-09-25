@@ -44,17 +44,16 @@
                                     </g>
                                 </svg>
                             </span>
-                            <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                            <span class="app-brand-text demo text-body fw-bolder">add users</span>
                         </a>
                     </div>
                     <!-- /Logo -->
-                    <h4 class="mb-2">Adventure starts here 🚀</h4>
-                    <p class="mb-4">Make your app management easy and fun!</p>
 
-                    <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+                    <form id="formAuthentication" class="mb-3" action="/admin/users" method="POST">
+                        @csrf
                         <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus />
+                            <label for="name" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your username" autofocus />
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
@@ -68,6 +67,10 @@
                             </div>
                         </div>
                         <div class="mb-3">
+                            <label for="role" class="form-label">role</label>
+                            <input type="text" class="form-control" id="role" name="role" placeholder="Enter your username" autofocus />
+                        </div>
+                        {{-- <div class="mb-3">
                             <label class="form-label" for="role">Role</label>
                             <select class="form-select form-select-m mb-3" aria-label=".form-select-lg example">
                                 <option selected>Select the role</option>
@@ -75,7 +78,7 @@
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
                             </select>
-                        </div>
+                        </div> --}}
                         
 
                         <button class="btn btn-primary d-grid w-100">Add User</button>

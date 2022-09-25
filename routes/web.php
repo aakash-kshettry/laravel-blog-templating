@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +16,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('front-end.master');
-});
 
 Route::get('/about', function () {
     return view('front-end.about');
@@ -80,3 +79,19 @@ Route::delete('/admin/categories/{id}', [CategoriesController::class,'destroy'])
 // Route::get('/admin/category-table', function () {
 //     return view('backend.category-table');
 // });
+Route::get('/admin/comments', [CommentsController::class,'index']);
+Route::get('/admin/comments/{id}', [CommentsController::class,'edit']);
+
+Route::get('/admin/users', [UsersController::class,'index']);
+Route::get('/admin/users/form', [UsersController::class,'create']);
+Route::post('/admin/users', [UsersController::class,'store']);
+Route::get('/admin/users/{id}', [UsersController::class,'edit']);
+Route::put('/admin/users/{id}', [UsersController::class,'update']);
+Route::delete('/admin/users/{id}', [UsersController::class,'destroy']);
+
+Route::get('/admin/posts', [PostsController::class,'index']);
+Route::get('/admin/posts/form', [PostsController::class,'create']);
+Route::post('/admin/posts', [PostsController::class,'store']);
+Route::get('/admin/posts/{id}', [PostsController::class,'edit']);
+Route::put('/admin/posts/{id}', [PostsController::class,'update']);
+Route::delete('/admin/posts/{id}', [PostsController::class,'destroy']);
