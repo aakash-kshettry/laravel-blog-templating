@@ -41,6 +41,8 @@
       href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
+    
+
 
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="{{asset('assets/admin/vendor/fonts/boxicons.css')}}" />
@@ -59,6 +61,7 @@
 
     <!-- Helpers -->
     <script src="{{asset('assets/admin/vendor/js/helpers.js')}}"></script>
+  
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
@@ -149,12 +152,12 @@
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="/admin/users/form" class="menu-link">
+                  <a href="{{ route('user.create')}}" class="menu-link">
                     <div data-i18n="Without menu">User Form</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="/admin/users" class="menu-link">
+                  <a href="{{ route('user.index')}}" class="menu-link">
                     <div data-i18n="Without navbar">User Table</div>
                   </a>
                 </li>
@@ -168,18 +171,18 @@
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="/admin/post-form" class="menu-link">
-                    <div data-i18n="Without menu">Post Form</div>
+                  <a href="{{ route('post.create') }}" class="menu-link">
+                    <div data-i18n="Without menu">Add</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="/admin/post-table" class="menu-link">
-                    <div data-i18n="Without navbar">Post Table</div>
+                  <a href="{{ route('post.index') }}" class="menu-link">
+                    <div data-i18n="Without navbar">View</div>
                   </a>
                 </li>
               </ul>
             </li>
-            <li class="menu-item">
+            {{-- <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Comments</div>
@@ -197,7 +200,7 @@
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
@@ -206,12 +209,12 @@
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="/admin/categories/form" class="menu-link">
+                  <a href="{{ route('category.create') }}" class="menu-link">
                     <div data-i18n="Without menu">Category Form</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="/admin/categories" class="menu-link">
+                  <a href="{{ route('category.index') }}" class="menu-link">
                     <div data-i18n="Without navbar">Category Table</div>
                   </a>
                 </li>
@@ -376,5 +379,10 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    {{-- ckeditor --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+
+    @yield('scripts')
   </body>
 </html>

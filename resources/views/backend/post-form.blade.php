@@ -44,47 +44,52 @@
                                     </g>
                                 </svg>
                             </span>
-                            <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                            <span class="app-brand-text demo text-body fw-bolder">Add Posts</span>
                         </a>
                     </div>
                     <!-- /Logo -->
-                    <h4 class="mb-2">Adventure starts here 🚀</h4>
-                    <p class="mb-4">Make your app management easy and fun!</p>
-
-                    <form id="formAuthentication" class="mb-3" action="/admin/posts" method="POST">
+                
+                    @if(!isset($data->id))
+                    <form id="formAuthentication" class="mb-3" action="{{ route('post.store') }}" method="POST">
+                    @else
+                    <form id="formAuthentication" class="mb-3" action="{{ route('post.update', $data->id) }}" method="POST">
+                    @method('put')
+                    @endif
                         @csrf
                         <div class="mb-3">
                             <label for="username" class="form-label">title</label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter your username" autofocus />
+                            <input type="text" class="form-control" id="title" name="title" value="{{ isset($data->title)?$data->title:'' }}" placeholder="Enter your username" autofocus />
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">slug</label>
-                            <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter your email" />
+                            <input type="text" class="form-control" id="slug" name="slug" value="{{ isset($data->slug)?$data->slug:'' }}"placeholder="Enter your email" />
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">summary</label>
-                            <input type="text" class="form-control" id="summary" name="summary" placeholder="Enter your email" />
+                            <input type="text" class="form-control" id="summary" name="summary" value="{{ isset($data->summary)?$data->summary:'' }}" placeholder="Enter your email" />
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">description</label>
-                            <input type="text" class="form-control" id="description" name="description" placeholder="Enter your email" />
+                            <input type="text" class="form-control" id="text-area" name="description" value="{{ isset($data->description)?$data->description:'' }}" placeholder="Enter your email" />
                         </div>
                         <div class="mb-3">
                             <label for="status" class="form-label">status</label>
-                            <input type="text" class="form-control" id="status" name="status" placeholder="Enter your username" autofocus />
+                            <input type="text" class="form-control" id="status" name="status" value="{{ isset($data->status)?$data->status:'' }}" placeholder="Enter your username" autofocus />
                         </div>
-
-                        {{-- <div class="mb-3">
-                            <label class="form-label" for="role">Role</label>
-                            <select class="form-select form-select-m mb-3" aria-label=".form-select-lg example">
-                                <option selected>Select the status</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                        <div class="mb-3">
+                            <label class="form-label" for="category">Category</label>
+                            <select class="form-select form-select-m mb-3" name="category_id" aria-label=".form-select-lg example">
+                                @foreach ($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
                             </select>
-                        </div> --}}
-
+                        </div>
+                        @if (!isset($data->id))
                         <button class="btn btn-primary d-grid w-100">Add Post</button>
+                        @else
+                        <button class="btn btn-primary d-grid w-100">Update Post</button>   
+                        @endif
+                        
                     </form>
                 </div>
             </div>
@@ -93,4 +98,14 @@
     </div>
     </div>
 <!-- / Content -->
+@endsection
+
+@section('scripts')
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#text-area' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 @endsection

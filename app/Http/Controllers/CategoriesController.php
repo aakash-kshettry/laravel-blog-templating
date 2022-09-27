@@ -12,11 +12,16 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(Category $category)
+    {
+        $this->model = $category;
+    }
     public function index()
     {
         
-        $categories = Category::all();
-        return view('backend.category-table', ['categories' => $categories]);
+        $categories = $this->model->all();
+        //dd($category);
+        return view('backend.category-table', compact('categories'));
     }
 
     /**
@@ -37,12 +42,10 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category();
-        $category->name= $request->name;
-        $category->description = $request->description;
-        $category->status = $request->status;
-        $category->save();
-        return redirect("/admin/categories");
+        $data = $request->all();
+        //dd($data);
+        $this->model->create($data);
+        return redirect()->route('category.index');
     }
 
     /**
@@ -64,8 +67,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::where('id', $id)->first();
-        return view('backend.category-edit', ['category' => $category]);
+        $data = $this->model->find($id);
+        return view('backend.category-form', compact('data'));
     }
 
     /**
@@ -77,12 +80,20 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::where('id', $id)->first();
-        $category->name = $request ->name;
-        $category->description = $request->description ;
-        $category->status = $request->status;
-        $category->save();
-        return redirect('/admin/categories');
+        // $category = Category::where('id', $id)->first();
+        // $category->name = $request ->name;
+        // $category->description = $request->description ;
+        // $category->status = $request->status;
+        // $category->save();
+        // return redirect('/admin/categories');
+        $data = $this->model->find($id);
+        //$data->category_id = 1;
+        $data->name=$request->name;
+        $data->description=$request->description;
+        $data->status=$request->status;
+        //dd($data);
+        $data->update();
+        return redirect()->route('category.index');
     }
 
     /**
@@ -93,8 +104,10 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::where('id',$id)->first();
-        $category->delete();
-        return redirect("/admin/categories");
+        $data = $this->model->find($id);
+        if ($data) {
+            $data->delete();
+            return redirect()->route('category.index');
+        }
     }
 }

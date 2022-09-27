@@ -6,7 +6,7 @@
 
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4">User Table</h4>
-        <a class="btn btn-primary mb-4" href="/admin/users/form" role="button">Add new users</a>
+        <a class="btn btn-primary mb-4" href="{{route('user.create')}}" role="button">Add new users</a>
         <!-- Basic Bootstrap Table -->
         <div class="card">
             <div class="table-responsive text-nowrap">
@@ -31,10 +31,10 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="/admin/users/{{ $user->id }}"
+                                            <a class="dropdown-item" href="{{ route('user.edit', $user->id) }}"
                                               ><i class="bx bx-edit-alt me-1"></i> Edit</a
                                             >
-                                            <form action="/admin/users/{{ $user->id }}" method="post">
+                                            <form action="{{ route('user.destroy', $user->id) }}" method="post">
                                               @csrf
                                               @method('delete')
                                               <button class="dropdown-item"><i class="bx bx-edit-alt me-1"></i>Delete</button>

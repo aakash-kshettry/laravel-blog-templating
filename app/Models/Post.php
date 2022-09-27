@@ -14,6 +14,7 @@ class Post extends Model
         'summary',
         'description',
         'author_id',
+        'category_id',
         'status'
     ];
 }

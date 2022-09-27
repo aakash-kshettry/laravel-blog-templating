@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
 
 class PostsController extends Controller
 {
+    
+    public function __construct(Post $post)
+    {
+        $this->model = $post;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +21,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        
-        $posts = Post::all();
-        return view('backend.post-table', ['posts' => $posts]);
+        $posts = $this->model->all();
+        return view('backend.post-table', compact('posts'));
     }
 
     // /**
@@ -27,7 +32,8 @@ class PostsController extends Controller
     //  */
     public function create()
     {
-        return view('backend.post-form');
+        $categories=Category::all();
+        return view('backend.post-form', compact('categories'));
     }
 
     // /**
@@ -38,14 +44,11 @@ class PostsController extends Controller
     //  */
     public function store(Request $request)
     {
-        $post = new Post();
-        $post->title= $request->title;
-        $post->slug= $request->slug;
-        $post->summary= $request->summary;
-        $post->description = $request->description;
-        $post->status = $request->status;
-        $post->save();
-        return redirect("/admin/posts");
+        $data = $request->all();
+        //dd($data);
+        $data['author_id'] = 1;
+        $this->model->create($data);
+        return redirect()->route('post.index');
     }
 
     // /**
@@ -54,10 +57,10 @@ class PostsController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function show($id)
-    // {
-    //     //
-    // }
+    public function show($id)
+    {
+        //
+    }
 
     // /**
     //  * Show the form for editing the specified resource.
@@ -65,11 +68,12 @@ class PostsController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function edit($id)
-    // {
-    //     $category = Category::where('id', $id)->first();
-    //     return view('backend.category-edit', ['category' => $category]);
-    // }
+    public function edit($id)
+    {
+        $categories = Category::all();
+        $data = $this->model->find($id);
+        return view('backend.post-form', compact('data', 'categories'));
+    }
 
     // /**
     //  * Update the specified resource in storage.
@@ -78,15 +82,26 @@ class PostsController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function update(Request $request, $id)
-    // {
-    //     $category = Category::where('id', $id)->first();
-    //     $category->name = $request ->name;
-    //     $category->description = $request->description ;
-    //     $category->status = $request->status;
-    //     $category->save();
-    //     return redirect('/admin/categories');
-    // }
+    public function update(Request $request, $id)
+    {
+        // $category = Category::where('id', $id)->first();
+        // $category->name = $request ->name;
+        // $category->description = $request->description ;
+        // $category->status = $request->status;
+        // $category->save();
+        // return redirect('/admin/categories');
+        $data = $this->model->find($id);
+        //$data->category_id = 1;
+        $data->title=$request->title;
+        $data->slug=$request->slug;
+        $data->summary=$request->summary;
+        $data->description=$request->description;
+        $data->status=$request->status;
+        //dd($data);
+        $data->update();
+        return redirect()->route('post.index');
+
+    }
 
     // /**
     //  * Remove the specified resource from storage.
@@ -94,10 +109,12 @@ class PostsController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function destroy($id)
-    // {
-    //     $category = Category::where('id',$id)->first();
-    //     $category->delete();
-    //     return redirect("/admin/categories");
-    // }
+    public function destroy($id)
+    {
+        $data = $this->model->find($id);
+        if ($data) {
+            $data->delete();
+            return redirect()->route('post.index');
+        }
+    }
 }

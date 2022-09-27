@@ -5,8 +5,8 @@
     <!-- Content -->
 
     <div class="container-xxl flex-grow-1 container-p-y">
-      <h4 class="fw-bold py-3 mb-2"> Post Table</h4>
-      <a class="btn btn-primary mb-4" href="/admin/categories/form" role="button">Add new Category</a>
+      <h4 class="fw-bold py-3 mb-2"> Category Table</h4>
+      <a class="btn btn-primary mb-4" href="{{route('category.create')}}" role="button">Add new Category</a>
       <!-- Basic Bootstrap Table -->
       <div class="card">
         <h5 class="card-header">POSTS</h5>
@@ -33,10 +33,10 @@
                       <i class="bx bx-dots-vertical-rounded"></i>
                     </button>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" href="/admin/categories/{{ $category->id }}"
+                      <a class="dropdown-item" href="{{ route('category.edit', $category->id) }}"
                         ><i class="bx bx-edit-alt me-1"></i> Edit</a
                       >
-                      <form action="/admin/categories/{{ $category->id }}" method="post">
+                      <form action="{{ route('category.destroy', $category->id) }}" method="post">
                         @csrf
                         @method('delete')
                         <button class="dropdown-item"><i class="bx bx-edit-alt me-1"></i>Delete</button>

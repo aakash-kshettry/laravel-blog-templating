@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    public function __construct(User $user)
+    {
+        $this->model = $user;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +19,8 @@ class UsersController extends Controller
     public function index()
     {
         
-        $users = User::all();
-        //return $users;
-        return view('backend.user-table', ['users' => $users]);
+        $users = $this->model->all();
+        return view('backend.user-table', compact('users'));
     }
 
     // /**
@@ -38,13 +41,10 @@ class UsersController extends Controller
     //  */
     public function store(Request $request)
     {
-        $user = new User();
-        $user->name= $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->role = $request->role;
-        $user->save();
-        return redirect("/admin/users");
+        $data = $request->all();
+        //dd($data);
+        $this->model->create($data);
+        return redirect()->route('user.index');
     }
 
     // /**
@@ -66,8 +66,8 @@ class UsersController extends Controller
     //  */
     public function edit($id)
     {
-        $user = User::where('id', $id)->first();
-        return view('backend.user-edit', ['user' => $user]);
+        $data = $this->model->find($id);
+        return view('backend.user-form', compact('data'));
     }
 
     // /**
@@ -79,13 +79,15 @@ class UsersController extends Controller
     //  */
     public function update(Request $request, $id)
     {
-        $user = User::where('id', $id)->first();
-        $user->name = $request->name;
-        $user->email = $request->email ;
-        $user->password = $request->password;
-        $user->role = $request->role;
-        $user->save();
-        return redirect('/admin/users');
+        $data = $this->model->find($id);
+        //$data->category_id = 1;
+        $data->name=$request->name;
+        $data->email=$request->email;
+        $data->password=$request->password;
+        $data->role=$request->role;
+        //dd($data);
+        $data->update();
+        return redirect()->route('user.index');
     }
 
     // /**
@@ -96,8 +98,10 @@ class UsersController extends Controller
     //  */
     public function destroy($id)
     {
-        $user = User::where('id',$id)->first();
-        $user->delete();
-        return redirect("/admin/users");
+        $data = $this->model->find($id);
+        if ($data) {
+            $data->delete();
+            return redirect()->route('user.index');
+        }
     }
 }

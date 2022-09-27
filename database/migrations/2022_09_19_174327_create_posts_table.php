@@ -21,7 +21,10 @@ return new class extends Migration
             $table->text('description');
             $table->enum('status', ['Publish', "Unpublish", 'Draft'])->default('Draft');
             $table->unsignedBigInteger('author_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('author_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->string('image')->nullable();
             $table->timestamps(); 
         });
     }

@@ -48,40 +48,47 @@
                         </a>
                     </div>
                     <!-- /Logo -->
-
-                    <form id="formAuthentication" class="mb-3" action="/admin/users" method="POST">
+                    @if(!isset($data->id))
+                    <form id="formAuthentication" class="mb-3" action="{{ route('user.store') }}" method="POST">
+                    @else
+                    <form id="formAuthentication" class="mb-3" action="{{ route('user.update', $data->id) }}" method="POST">
+                    @method('put')
+                    @endif
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your username" autofocus />
+                            <input type="text" class="form-control" id="name" name="name" value="{{ isset($data->name)?$data->name:'' }}" placeholder="Enter your username" autofocus />
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
+                            <input type="text" class="form-control" id="email" name="email" value="{{ isset($data->email)?$data->email:'' }}" placeholder="Enter your email" />
                         </div>
                         <div class="mb-3 form-password-toggle">
                             <label class="form-label" for="password">Password</label>
                             <div class="input-group input-group-merge">
-                                <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                                <input type="password" id="password" class="form-control" value="{{ isset($data->password)?$data->password:'' }}" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
                                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="role" class="form-label">role</label>
-                            <input type="text" class="form-control" id="role" name="role" placeholder="Enter your username" autofocus />
-                        </div>
                         {{-- <div class="mb-3">
-                            <label class="form-label" for="role">Role</label>
-                            <select class="form-select form-select-m mb-3" aria-label=".form-select-lg example">
-                                <option selected>Select the role</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
+                            <label for="role" class="form-label">role</label>
+                            <input type="text" class="form-control" id="role" name="role" value="{{ isset($data->role)?$data->role:'' }}" placeholder="Enter your username" autofocus />
                         </div> --}}
+                        <div class="mb-3">
+                            <label class="form-label" for="role">Role</label>
+                            <select class="form-select form-select-m mb-3" name="role" aria-label=".form-select-lg example">
+                                    <option value="admin">admin</option>
+                                    <option value="author">author</option>
+                                    <option value="editor">editor</option>
+                                    <option value="user">user</option>
+                            </select>
+                        </div>
+                        @if (!isset($data->id))
+                            <button class="btn btn-primary d-grid w-100">Add User</button>
+                        @else
+                        <button class="btn btn-primary d-grid w-100">Update User</button>
+                        @endif
                         
-
-                        <button class="btn btn-primary d-grid w-100">Add User</button>
                     </form>
                 </div>
             </div>

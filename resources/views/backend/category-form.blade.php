@@ -48,16 +48,20 @@
                         </a>
                     </div>
                     
-                    
-                    <form id="formAuthentication" class="mb-3" action="/admin/categories" method="POST">
+                    @if(!isset($data->id))
+                    <form id="formAuthentication" class="mb-3" action="{{route('category.store')}}" method="POST">
+                    @else
+                        <form id="formAuthentication" class="mb-3" action="{{route('category.update', $data->id)}}" method="POST">
+                        @method('put')
+                    @endif
                         @csrf
                         <div class="mb-3">
                             <label for="username" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your username" autofocus />
+                            <input type="text" class="form-control" id="name" name="name" value="{{ isset($data->name)?$data->name:'' }}" placeholder="Enter your username" autofocus />
                         </div>
                         <div class="mb-3">
                             <label for="username" class="form-label">Description</label>
-                            <input type="text" class="form-control" id="description" name="description" placeholder="Enter description" autofocus />
+                            <input type="text" class="form-control" id="description" name="description" value="{{ isset($data->description)?$data->description:'' }}" placeholder="Enter description" autofocus />
                         </div>
                         {{-- <div class="mb-3">
                             <label class="form-label" for="role">Status</label>
@@ -70,9 +74,14 @@
                         </div> --}}
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
-                            <input type="text" class="form-control" id="status" name="status" placeholder="Enter category" autofocus />
+                            <input type="text" class="form-control" id="status" name="status" value="{{ isset($data->status)?$data->status:'' }}" placeholder="Enter category" autofocus />
                         </div>
+                        @if (!isset($data->id))
                         <button class="btn btn-primary d-grid w-100">Add Category</button>
+                        @else
+                        <button class="btn btn-primary d-grid w-100">Update Category</button>   
+                        @endif
+                        
                     </form>
                 </div>
             </div>
