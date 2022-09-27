@@ -14,7 +14,7 @@
                     <thead>
                         <tr>
                             <th>Users</th>
-                            <th>Roles</th>
+                            <th>Email</th>
                             <th>Roles</th>
                             <th>Actions</th>
                         </tr>

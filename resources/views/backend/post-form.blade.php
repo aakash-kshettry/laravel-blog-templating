@@ -69,8 +69,8 @@
                             <input type="text" class="form-control" id="summary" name="summary" value="{{ isset($data->summary)?$data->summary:'' }}" placeholder="Enter your email" />
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">description</label>
-                            <input type="text" class="form-control" id="text-area" name="description" value="{{ isset($data->description)?$data->description:'' }}" placeholder="Enter your email" />
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" name="description" value="{{ isset($data->summary)?$data->summary:'' }}" id="description" ></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="status" class="form-label">status</label>
@@ -80,7 +80,15 @@
                             <label class="form-label" for="category">Category</label>
                             <select class="form-select form-select-m mb-3" name="category_id" aria-label=".form-select-lg example">
                                 @foreach ($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    <option value="{{isset($category->id)?$category->id:''}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="user">user</label>
+                            <select class="form-select form-select-m mb-3" name="author_id" aria-label=".form-select-lg example">
+                                @foreach ($users as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -103,7 +111,7 @@
 @section('scripts')
     <script>
         ClassicEditor
-            .create( document.querySelector( '#text-area' ) )
+            .create( document.querySelector( '#description' ) )
             .catch( error => {
                 console.error( error );
             } );

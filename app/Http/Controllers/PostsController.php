@@ -33,7 +33,8 @@ class PostsController extends Controller
     public function create()
     {
         $categories=Category::all();
-        return view('backend.post-form', compact('categories'));
+        $users = User::all();
+        return view('backend.post-form', compact('categories', 'users'));
     }
 
     // /**
@@ -46,7 +47,6 @@ class PostsController extends Controller
     {
         $data = $request->all();
         //dd($data);
-        $data['author_id'] = 1;
         $this->model->create($data);
         return redirect()->route('post.index');
     }
@@ -71,8 +71,9 @@ class PostsController extends Controller
     public function edit($id)
     {
         $categories = Category::all();
+        $users=User::all();
         $data = $this->model->find($id);
-        return view('backend.post-form', compact('data', 'categories'));
+        return view('backend.post-form', compact('data', 'categories', 'users'));
     }
 
     // /**
@@ -97,6 +98,8 @@ class PostsController extends Controller
         $data->summary=$request->summary;
         $data->description=$request->description;
         $data->status=$request->status;
+        $data->category_id=$request->category_id;
+        $data->author_id=$request->author_id;
         //dd($data);
         $data->update();
         return redirect()->route('post.index');
