@@ -57,19 +57,34 @@
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ isset($data->name)?$data->name:'' }}" placeholder="Enter your username" autofocus />
+                            <input type="text" class="form-control" id="name" name="name" value="{{ isset($data->name)?$data->name:(old('name')?old('name'):'') }}" placeholder="Enter your username" autofocus />
                         </div>
+                        @if($errors->has('name'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('name') }}
+                            </div>
+                        @endif
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" value="{{ isset($data->email)?$data->email:'' }}" placeholder="Enter your email" />
+                            <input type="text" class="form-control" id="email" name="email" value="{{ isset($data->email)?$data->email:(old('email')?old('email'):'') }}" placeholder="Enter your email" />
                         </div>
+                        @if($errors->has('email'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('email') }}
+                            </div>
+                        @endif
                         <div class="mb-3 form-password-toggle">
                             <label class="form-label" for="password">Password</label>
                             <div class="input-group input-group-merge">
-                                <input type="password" id="password" class="form-control" value="{{ isset($data->password)?$data->password:'' }}" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                                <input type="password" id="password" class="form-control" value="{{ isset($data->password)?$data->password:(old('password')?old('password'):'') }}" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
                                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>
+                        @if($errors->has('password'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('password') }}
+                            </div>
+                        @endif
                         {{-- <div class="mb-3">
                             <label for="role" class="form-label">role</label>
                             <input type="text" class="form-control" id="role" name="role" value="{{ isset($data->role)?$data->role:'' }}" placeholder="Enter your username" autofocus />
@@ -83,6 +98,11 @@
                                     <option value="user">user</option>
                             </select>
                         </div>
+                        @if($errors->has('role'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('role') }}
+                            </div>
+                        @endif
                         @if (!isset($data->id))
                             <button class="btn btn-primary d-grid w-100">Add User</button>
                         @else

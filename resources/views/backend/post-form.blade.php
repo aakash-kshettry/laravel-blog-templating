@@ -58,24 +58,49 @@
                         @csrf
                         <div class="mb-3">
                             <label for="username" class="form-label">title</label>
-                            <input type="text" class="form-control" id="title" name="title" value="{{ isset($data->title)?$data->title:'' }}" placeholder="Enter your username" autofocus />
+                            <input type="text" class="form-control" id="title" name="title" value="{{ isset($data->title)?$data->title:(old('title')?old('title'):'') }}" placeholder="Enter your username" autofocus />
                         </div>
+                        @if($errors->has('title'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('title') }}
+                            </div>
+                        @endif
                         <div class="mb-3">
                             <label for="email" class="form-label">slug</label>
-                            <input type="text" class="form-control" id="slug" name="slug" value="{{ isset($data->slug)?$data->slug:'' }}"placeholder="Enter your email" />
+                            <input type="text" class="form-control" id="slug" name="slug" value="{{ isset($data->slug)?$data->slug:(old('slug')?old('slug'):'') }}"placeholder="Enter your email" />
                         </div>
+                        @if($errors->has('slug'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('slug') }}
+                            </div>
+                        @endif
                         <div class="mb-3">
-                            <label for="email" class="form-label">summary</label>
-                            <input type="text" class="form-control" id="summary" name="summary" value="{{ isset($data->summary)?$data->summary:'' }}" placeholder="Enter your email" />
+                            <label for="summary" class="form-label">summary</label>
+                            <input type="text" class="form-control" id="summary" name="summary" value="{{ isset($data->summary)?$data->summary:(old('summary')?old('summary'):'') }}" placeholder="Enter your email" />
                         </div>
+                        @if($errors->has('summary'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('summary') }}
+                            </div>
+                        @endif
                         <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" name="description" value="{{ isset($data->summary)?$data->summary:'' }}" id="description" ></textarea>
+                            <label for="description" class="form-label">description</label>
+                            <input type="text" class="form-control" id="description" name="description" value="{{ isset($data->description)?$data->description:(old('description')?old('description'):'') }}" placeholder="Enter your email" />
                         </div>
+                        @if($errors->has('description'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('description') }}
+                            </div>
+                        @endif
                         <div class="mb-3">
                             <label for="status" class="form-label">status</label>
-                            <input type="text" class="form-control" id="status" name="status" value="{{ isset($data->status)?$data->status:'' }}" placeholder="Enter your username" autofocus />
+                            <input type="text" class="form-control" id="status" name="status" value="{{ isset($data->status)?$data->status:(old('status')?old('status'):'') }}" placeholder="Enter your username" autofocus />
                         </div>
+                        @if($errors->has('status'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('status') }}
+                            </div>
+                        @endif
                         <div class="mb-3">
                             <label class="form-label" for="category">Category</label>
                             <select class="form-select form-select-m mb-3" name="category_id" aria-label=".form-select-lg example">
@@ -84,6 +109,11 @@
                                 @endforeach
                             </select>
                         </div>
+                        @if($errors->has('category_id'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('category_id') }}
+                            </div>
+                        @endif
                         <div class="mb-3">
                             <label class="form-label" for="user">user</label>
                             <select class="form-select form-select-m mb-3" name="author_id" aria-label=".form-select-lg example">
@@ -92,6 +122,15 @@
                                 @endforeach
                             </select>
                         </div>
+                        @if($errors->has('author_id'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('author_id') }}
+                            </div>
+                        @endif
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" id="inputGroupFile02">
+                            <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                          </div>
                         @if (!isset($data->id))
                         <button class="btn btn-primary d-grid w-100">Add Post</button>
                         @else
@@ -108,7 +147,7 @@
 <!-- / Content -->
 @endsection
 
-@section('scripts')
+{{-- @section('scripts')
     <script>
         ClassicEditor
             .create( document.querySelector( '#description' ) )
@@ -116,4 +155,4 @@
                 console.error( error );
             } );
     </script>
-@endsection
+@endsection --}}

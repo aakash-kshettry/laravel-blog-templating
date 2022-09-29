@@ -41,6 +41,11 @@ class UsersController extends Controller
     //  */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'=>'required|max:255|min:4',
+            'email'=>'required|email|max:255|unique:users,email',
+            'password'=>'required|min:4|max:255'
+        ]);
         $data = $request->all();
         //dd($data);
         $this->model->create($data);
@@ -79,6 +84,11 @@ class UsersController extends Controller
     //  */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name'=>'required|max:255|min:4',
+            'password'=>'required|min:4|max:255',
+            'email'=>'required|max:255|min:4|unique:users,email,'.$id
+        ]);
         $data = $this->model->find($id);
         //$data->category_id = 1;
         $data->name=$request->name;

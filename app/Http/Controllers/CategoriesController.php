@@ -42,6 +42,11 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'=>'required|max:255|min:4|unique:posts,title,',
+            'description'=>'required|max:255|min:4',
+            'status'=>'required|boolean'
+        ]);
         $data = $request->all();
         //dd($data);
         $this->model->create($data);
@@ -80,12 +85,11 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $category = Category::where('id', $id)->first();
-        // $category->name = $request ->name;
-        // $category->description = $request->description ;
-        // $category->status = $request->status;
-        // $category->save();
-        // return redirect('/admin/categories');
+        $request->validate([
+            'name'=>'required|max:255|min:4|unique:posts,title,'.$id,
+            'description'=>'required|max:255|min:4',
+            'status'=>'required|boolean'
+        ]);
         $data = $this->model->find($id);
         //$data->category_id = 1;
         $data->name=$request->name;

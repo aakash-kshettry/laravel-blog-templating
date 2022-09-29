@@ -57,12 +57,22 @@
                         @csrf
                         <div class="mb-3">
                             <label for="username" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ isset($data->name)?$data->name:'' }}" placeholder="Enter your username" autofocus />
+                            <input type="text" class="form-control" id="name" name="name" value="{{ isset($data->name)?$data->name:(old('name')?old('name'):'') }}" placeholder="Enter your username" autofocus />
                         </div>
+                        @if($errors->has('name'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('name') }}
+                            </div>
+                        @endif
                         <div class="mb-3">
                             <label for="username" class="form-label">Description</label>
-                            <input type="text" class="form-control" id="description" name="description" value="{{ isset($data->description)?$data->description:'' }}" placeholder="Enter description" autofocus />
+                            <input type="text" class="form-control" id="description" name="description" value="{{ isset($data->description)?$data->description:(old('description')?old('description'):'') }}" placeholder="Enter description" autofocus />
                         </div>
+                        @if($errors->has('description'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('description') }}
+                            </div>
+                        @endif
                         {{-- <div class="mb-3">
                             <label class="form-label" for="role">Status</label>
                             <select class="form-select form-select-m mb-3" aria-label=".form-select-lg example">
@@ -74,8 +84,13 @@
                         </div> --}}
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
-                            <input type="text" class="form-control" id="status" name="status" value="{{ isset($data->status)?$data->status:'' }}" placeholder="Enter category" autofocus />
+                            <input type="text" class="form-control" id="status" name="status" value="{{ isset($data->status)?$data->status:(old('status')?old('status'):'') }}" placeholder="Enter category" autofocus />
                         </div>
+                        @if($errors->has('status'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('status') }}
+                            </div>
+                        @endif
                         @if (!isset($data->id))
                         <button class="btn btn-primary d-grid w-100">Add Category</button>
                         @else

@@ -45,6 +45,15 @@ class PostsController extends Controller
     //  */
     public function store(Request $request)
     {
+        $request->validate([
+            'title'=>'required|max:255|min:4|unique:posts,title,',
+            'slug'=>'required|max:255|min:4',
+            'summary'=>'required|max:255|min:4',
+            'description'=>'required|max:255|min:4',
+            'status'=>'required|max:255|min:4',
+            'category_id'=>'required',
+            'author_id'=>'required'
+        ]);
         $data = $request->all();
         //dd($data);
         $this->model->create($data);
@@ -91,6 +100,14 @@ class PostsController extends Controller
         // $category->status = $request->status;
         // $category->save();
         // return redirect('/admin/categories');
+        $request->validate([
+            'title'=>'required|max:255|min:4|unique:posts,title,'.$id,
+            'slug'=>'required|max:255|min:4',
+            'summary'=>'required|max:255|min:4',
+            'description'=>'required|max:255|min:4',
+            'status'=>'required|max:255|min:4'
+
+        ]);
         $data = $this->model->find($id);
         //$data->category_id = 1;
         $data->title=$request->title;
